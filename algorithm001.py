@@ -106,9 +106,31 @@ book["avocado"] = 3.00
 print(book)
 print(book["milk"])
 '''
-# 5.2   应用案例
+# 5.2 应用案例
 '''
+phone_book = {}
+phone_book["sun"] = 13162118603
+phone_book["emergency"] = 110
+print(phone_book["sun"])
+value = phone_book.get("emergency1")
+print(value)
+
+voted = {}
+def check_voter(name):
+    if voted.get(name):
+        print("投过了")
+    else:
+        voted[name] = True
+        print("请投票")
+check_voter("tom")
+check_voter("milk")
+check_voter("tom")
 '''
+# 5.3 冲突
+
+
+
+
 
 
 
