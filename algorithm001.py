@@ -126,8 +126,28 @@ check_voter("tom")
 check_voter("milk")
 check_voter("tom")
 '''
-# 5.3 冲突
-
+# 6、广度优先搜索
+def isSB(name):
+    return name[-1] == '哥'
+graph = {}                              #大括号用来创建字典
+searched = []                         # 中括号用来创建数字，避免重复查找、循环
+graph["我"] = ["李思鸣","华秋鸣","宋佳祺"]
+graph["李思鸣"] = ["斌哥","我"]
+graph["华秋鸣"] = ["斌哥"]
+graph["宋佳祺"] = ["汤泽凡"]
+graph["汤泽凡"] = []
+graph["斌哥"] = []
+from collections import deque
+search_queue = deque()                      # 创建队列
+search_queue += graph["我"]
+while search_queue:
+    person = search_queue.popleft()
+    if person not in searched:
+        searched.append(person)
+        if isSB(person):
+            print(person+"是个SB")
+        else:
+            search_queue += graph[person]
 
 
 
