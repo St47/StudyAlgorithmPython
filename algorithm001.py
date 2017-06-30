@@ -127,6 +127,7 @@ check_voter("milk")
 check_voter("tom")
 '''
 # 6、广度优先搜索
+'''
 def isSB(name):
     return name[-1] == '哥'
 graph = {}                              #大括号用来创建字典
@@ -148,10 +149,137 @@ while search_queue:
             print(person+"是个SB")
         else:
             search_queue += graph[person]
+'''
+# 7、狄克斯特拉算法
+'''
+graph = {}
+graph["start"] = {}
+graph["start"]["A"] = 4
+graph["start"]["B"] = 10
+# print(graph["start"].keys())
+graph["A"] = {}
+graph["A"]["C"] = 21
+graph["B"] = {}
+graph["B"]["D"] = 5
+graph["B"]["E"] = 8
+graph["C"] = {}
+graph["C"]["Fin"] = 4
+graph["E"] = {}
+graph["E"]["C"] = 12
+graph["D"] = {}
+graph["D"]["C"] = 5
+# print(graph)
+graph["Fin"] = {}
+infinity = float("inf")
+# 存储各节点开销
+costs = {}
+costs["A"] = 4
+costs["B"] = 10
+costs["C"] = infinity
+costs["D"] = infinity
+costs["E"] = infinity
+costs["Fin"] = infinity
+# 存储各节点的父节点
+parents = {}
+parents["A"] = "Start"
+parents["B"] = "Start"
+parents["C"] = None
+parents["D"] = None
+parents["E"] = None
+parents["Fin"] = None
+'''
+#  练习
+infinity = float("inf")
+def Dijkstra_algorithm(graph,parents,costs):
+    # 记录处理过的节点
+    processed = []
+    def find_lowest_cost_node(costs):
+        lowest_cost = infinity
+        lowest_cost_node = None
+        for node in costs:
+            cost = costs[node]
+            if cost < lowest_cost and node not in processed:  # is not in不对
+                lowest_cost = cost
+                lowest_cost_node = node
+        return lowest_cost_node
+    node = find_lowest_cost_node(costs)
+    while node is not None:
+        cost = costs[node]
+        neighbors = graph[node]
+        for node_temp in neighbors:
+            if cost + neighbors[node_temp] < costs[node_temp]:
+                costs[node_temp] = cost + neighbors[node_temp]
+                parents[node_temp] = node
+        processed.append(node)
+        node = find_lowest_cost_node(costs)
+    print("最短距离是:" + str(costs["Fin"]))
+    temp = parents["Fin"]
+    str2 = " Fin"
+    while temp is not "Start":
+        str2 = " " + temp + str2
+        temp = parents[temp]
+    print("最短路径是:Start" + str2)
+# 第一题z
+'''
+graph = {}
+graph["Start"] = {}
+graph["Start"]["A"] = 5
+graph["Start"]["B"] = 2
+graph["A"] = {}
+graph["A"]["C"] = 4
+graph["A"]["D"] = 2
+graph["B"] = {}
+graph["B"]["A"] = 8
+graph["B"]["D"] = 7
+graph["C"] = {}
+graph["C"]["D"] = 6
+graph["C"]["Fin"] = 3
+graph["D"] = {}
+graph["D"]["Fin"] = 1
+graph["Fin"] = {}
 
+costs = {}
+costs["A"] = 5
+costs["B"] = 2
+costs["C"] = infinity
+costs["D"] = infinity
+costs["Fin"] = infinity
 
+parents = {}
+parents["A"] = "Start"
+parents["B"] = "Start"
+parents["C"] = None
+parents["D"] = None
+parents["Fin"] = None
+findShortestPath(graph,parents,costs)
+'''
+# 第二题
+'''
+graph = {}
+graph["Start"] = {}
+graph["Start"]["A"] = 10
+graph["A"] = {}
+graph["A"]["B"] = 20
+graph["B"] = {}
+graph["B"]["Fin"] = 30
+graph["B"]["C"] = 1
+graph["C"] = {}
+graph["C"]["A"] = 1
+graph["Fin"] = {}
 
+costs = {}
+costs["A"] = 10
+costs["B"] = infinity
+costs["C"] = infinity
+costs["Fin"] = infinity
 
+parents = {}
+parents["A"] = "Start"
+parents["B"] = None
+parents["C"] = None
+parents["Fin"] = None
+findShortestPath(graph,parents,costs)
+'''
 
 
 
