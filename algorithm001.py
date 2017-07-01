@@ -189,7 +189,8 @@ parents["E"] = None
 parents["Fin"] = None
 '''
 #  练习
-infinity = float("inf")
+# infinity = float("inf")
+'''
 def Dijkstra_algorithm(graph,parents,costs):
     # 记录处理过的节点
     processed = []
@@ -219,6 +220,7 @@ def Dijkstra_algorithm(graph,parents,costs):
         str2 = " " + temp + str2
         temp = parents[temp]
     print("最短路径是:Start" + str2)
+'''
 # 第一题z
 '''
 graph = {}
@@ -280,6 +282,86 @@ parents["C"] = None
 parents["Fin"] = None
 findShortestPath(graph,parents,costs)
 '''
+# 8、贪婪算法
+'''
+people = [1,2,2,4]     # 数组
+print(people)
+people2 = set([1,2,2,4])        # 集合：不出现重复的,输入数组转化为集合
+print(people2)
+arr1 = [1,1,2,2,2,3,4,4]
+print(arr1)
+set1 = set(arr1)
+print(set1)
+list = {}
+list["one"] = set([1,2,3])
+for a,b in list.items():
+    print (a)
+    print(b)
+'''
+'''
+# 广播电台的选择
+stations = {}
+stations["kone"] = set(["id", "nv", "ut"])
+stations["ktwo"] = set(["wa", "id", "mt"])
+stations["kthree"] = set(["or", "nv", "ca"])
+stations["kfour"] = set(["nv", "ut"])
+stations["kfive"] = set(["ca", "az"])
+# 需要覆盖的州
+state_needed = set()
+for a,b in stations.items():
+    state_needed = state_needed | b
+# 确定使用的电台
+stations_final = set()
+# 遍历所有的电台
+while state_needed:
+    station_selected = None
+    station_covered = set()
+    for a,b in stations.items():
+        covered_temp = b & state_needed
+        if len(covered_temp) > len(station_covered):
+            station_covered = covered_temp
+            station_selected = a
+    stations_final.add(station_selected)
+    state_needed -= station_covered
+print(stations_final)
+'''
+# 自己写个旅行商问题的近似算法
+'''
+graph = {}
+graph["A"] = {}
+graph["A"]["B"] = 5
+graph["A"]["C"] = 8
+graph["A"]["D"] = 12
+graph["B"] = {}
+graph["B"]["A"] = 5
+graph["B"]["C"] = 10
+graph["B"]["D"] = 9
+graph["C"] = {}
+graph["C"]["A"] = 8
+graph["C"]["B"] = 10
+graph["C"]["D"] = 4
+graph["D"] = {}
+graph["D"]["A"] = 12
+graph["D"]["B"] = 9
+graph["D"]["C"] = 4
+city_now = "A"
+city_remained = ["B","C","D"]
+print(city_now)
+while city_remained:
+    dis = float("inf")
+    city_next = None
+    for c in city_remained:
+        if graph[city_now][c] < dis:
+            city_next = c
+            dis = graph[city_now][c]
+    print(city_next)
+    city_now = city_next
+    city_remained.remove(city_next)
+'''
+
+
+
+
 
 
 
