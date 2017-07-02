@@ -358,6 +358,58 @@ while city_remained:
     city_now = city_next
     city_remained.remove(city_next)
 '''
+# 9、动态规划
+'''
+graph = {}
+graph["water"] = [3,10]
+graph["book"] = [1,3]
+graph["food"] = [2,9]
+graph["jacket"] = [2,5]
+graph["camera"] = [1,6]
+i=0
+cells_final = []
+values_final = []
+for item in graph.keys():
+    cells_row = []
+    values_row = []
+    for j in range(1,7):
+        #如果是第一行，先初始化
+        if i == 0:
+            if graph[item][0] > j:
+                value_temp = 0
+                cell_temp = set()
+            if graph[item][0] <= j:
+                value_temp = graph[item][1]
+                cell_temp = set([item])
+            cells_row.append(cell_temp)
+            values_row.append(value_temp)
+        #接下来的动态规划
+        else:
+            if graph[item][0] > j:
+                value_temp = values_final[i-1][j-1]
+                cell_temp = cells_final[i-1][j-1]
+            if graph[item][0] == j:
+                if graph[item][1] > values_final[i-1][j-1]:
+                    value_temp = graph[item][1]
+                    cell_temp = set([item])
+                else:
+                    value_temp = values_final[i - 1][j - 1]
+                    cell_temp = cells_final[i - 1][j - 1]
+            if graph[item][0] < j:
+                if values_final[i-1][j-1] >=  graph[item][1]+values_final[i-1][j-1-graph[item][0]]:
+                    value_temp = values_final[i - 1][j - 1]
+                    cell_temp = cells_final[i - 1][j - 1]
+                else:
+                    value_temp = graph[item][1]+values_final[i-1][j-1-graph[item][0]]
+                    cell_temp = cells_final[i - 1][j-1-graph[item][0]] | set([item])
+            cells_row.append(cell_temp)
+            values_row.append(value_temp)
+    cells_final.append(cells_row)
+    values_final.append(values_row)
+    i += 1
+print(values_final[4])
+'''
+
 
 
 
