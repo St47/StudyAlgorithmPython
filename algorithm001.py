@@ -409,8 +409,55 @@ for item in graph.keys():
     i += 1
 print(values_final[4])
 '''
-
-
+# 最大公共子串、最大公共子序列
+'''
+def maxSubString(word_a,word_b):
+    len_a = len(word_a)
+    len_b = len(word_b)
+    cell_final = []
+    for i in range(0,len_a):
+        cell_row = []
+        for j in range(0,len_b):
+            if i == 0:
+                if word_a[i] == word_b[j]:
+                    cell_row.append(1)
+                else:
+                    cell_row.append(0)
+            else:
+                if word_a[i] == word_b[j]:
+                    cell_row.append(1+cell_final[i-1][j-1])
+                else:
+                    cell_row.append(0)
+        cell_final.append(cell_row)
+    print(cell_final[len_a-1][len_b-1])
+def maxSubSequence(word_a,word_b):
+    len_a = len(word_a)
+    len_b = len(word_b)
+    cell_final = []
+    for i in range(0, len_a):
+        cell_row = []
+        for j in range(0, len_b):
+            if i == 0:
+                if word_a[i] == word_b[j]:
+                    cell_row.append(1)
+                else:
+                    if j == 0:
+                        cell_row.append(0)
+                    else:
+                        cell_row.append(cell_row[j-1])
+            else:
+                if word_a[i] == word_b[j]:
+                    cell_row.append(1 + cell_final[i - 1][j - 1])
+                else:
+                    if j == 0:
+                        cell_row.append(cell_final[i-1][j])
+                    else:
+                        cell_row.append(max(cell_final[i-1][j],cell_row[j-1]))
+        cell_final.append(cell_row)
+    print(cell_final[len_a - 1][len_b - 1])
+    print(cell_final)
+maxSubSequence("fosh","fish")
+'''
 
 
 
