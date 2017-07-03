@@ -458,9 +458,15 @@ def maxSubSequence(word_a,word_b):
     print(cell_final)
 maxSubSequence("fosh","fish")
 '''
-
-
-
+'''
+# 练习几个技巧
+arr = [12,13,14,15]
+print(arr[0] if arr[0] > arr[1] else arr[1])
+arr1 = [i for i in arr if i > 13]
+print(arr1)
+arr2 = ["w",123]
+print(arr+arr2)
+'''
 
 
 
