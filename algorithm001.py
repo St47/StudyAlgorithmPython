@@ -467,7 +467,15 @@ print(arr1)
 arr2 = ["w",123]
 print(arr+arr2)
 '''
-
+# 10、MapReduce
+'''
+from functools import reduce
+arr1 = [1,2,3,4,5]
+arr2 = map(lambda x: x*x, arr1)   # lambda快速定义函数
+print(list(arr2))    # 返回的是map对象，要转换为list
+red = reduce(lambda x,y:x+y,arr1)
+print(red)
+'''
 
 
 
