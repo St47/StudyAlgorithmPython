@@ -476,7 +476,36 @@ print(list(arr2))    # 返回的是map对象，要转换为list
 red = reduce(lambda x,y:x+y,arr1)
 print(red)
 '''
-
+# 线性规划（选票问题）
+'''
+max_votes = 0
+x_final = 0
+y_final = 0
+for x in range(500,751):
+    for y in range(300,801):
+        if x + 1.5*y <= 1200:
+            if 2*x + y <= 1500:
+                max_votes = x + y if x + y >= max_votes else max_votes
+                x_final = x if x + y >= max_votes else x_final
+                y_final = y if x + y >= max_votes else y_final
+print(x_final)
+print(y_final)
+print(max_votes)
+# 线性规划（生产利润最大化）
+max_profit = 0
+x_final = 0
+y_final = 0
+for x in range(1,5):
+    for y in range(1,5):
+        if x + 2*y <= 11:
+            if 5*x + 2*y <= 20:
+                max_profit = 2*x + 3*y if 2*x + 3*y >= max_profit else max_profit
+                x_final = x if 2*x + 3*y >= max_profit else x_final
+                y_final = y if 2*x + 3*y >= max_profit else y_final
+print(x_final)
+print(y_final)
+print(max_profit)
+'''
 
 
 
