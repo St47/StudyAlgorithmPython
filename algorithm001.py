@@ -491,6 +491,7 @@ for x in range(500,751):
 print(x_final)
 print(y_final)
 print(max_votes)
+'''
 # 线性规划（生产利润最大化）
 max_profit = 0
 x_final = 0
@@ -505,7 +506,7 @@ for x in range(1,5):
 print(x_final)
 print(y_final)
 print(max_profit)
-'''
+
 
 
 
